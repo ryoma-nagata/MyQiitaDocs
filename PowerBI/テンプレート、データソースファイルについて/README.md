@@ -2,13 +2,19 @@
 
 ## はじめに
 
+
 ### 参考記事
 
-https://powerbi.microsoft.com/en-us/blog/power-bi-desktop-october-2019-feature-summary/#pbids
+
 
 https://docs.microsoft.com/ja-jp/power-bi/connect-data/desktop-data-sources#using-pbids-files-to-get-data
 
 https://powerbi.tips/2019/10/make-pbids-files/
+
+
+本記事についてはgithubにもソースを載せておきました。
+
+[テンプレート、データソースファイルについて](https://github.com/ryoma-nagata/MyQiitaDocs/tree/master/PowerBI/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%80%81%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BD%E3%83%BC%E3%82%B9%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
 
 ## それぞれの違い
 
@@ -95,12 +101,55 @@ Excelのデータをおいているパスを入力することで、指定され
 
 #### テンプレートファイルはこちら
 
+[Gitlink](https://github.com/ryoma-nagata/MyQiitaDocs/tree/master/PowerBI/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%80%81%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BD%E3%83%BC%E3%82%B9%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/source)
+
+
 ### pbids
 
+参考記事
+[PBIDS ファイルを使用したデータの取得](https://docs.microsoft.com/ja-jp/power-bi/connect-data/desktop-data-sources#using-pbids-files-to-get-data)
 
+[PowerBIブログ](https://powerbi.microsoft.com/en-us/blog/power-bi-desktop-october-2019-feature-summary/#pbids)
+
+[解説記事](https://powerbi.tips/2019/10/make-pbids-files/)
+
+記事の中ではpbidsファイルを自動作成するサイトが照会されています。
 
 
 #### 作成方法
 
+データソースの種類ごとにjsonで.pbidsファイルを作成するだけです。
+適当なエディタにはりつけて、<ファイル名>.pbidsで保存してください。
+フォルダの\はエスケープしてあげてください。
+
+```json
+{
+   "connections":[
+      {
+         "details":{
+            "protocol":"file",
+            "address":{
+               "path":"C:\\フォルダパス～"
+            }
+         }
+      }
+   ],
+   "version":"0.1"
+}
+```
+
+参考
+![](.\image\pbids01.png)
+
+
+
+
+
+
 #### 利用方法
 
+pbidsファイルが作成され、アイコンも変わります。
+開くと、ファイルの内容が開かれます。
+
+
+![](.\image\pbids02.png)

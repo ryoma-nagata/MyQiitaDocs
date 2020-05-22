@@ -1,0 +1,13 @@
+{
+   "connections":[
+      {
+         "details":{
+            "protocol":"file",
+            "address":{
+               "path":"<filepath>"
+            }
+         }
+      }
+   ],
+   "version":"0.1"
+}
