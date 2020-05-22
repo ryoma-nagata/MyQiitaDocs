@@ -68,47 +68,47 @@ https://powerbi.tips/2019/10/make-pbids-files/
 
 Power BI を起動して、Excelデータを取得します。
 
-![](.media\pbit01.png)
+![](.media/pbit01.png)
 
 対象ファイルを開いて、「financials」データを読み込みます。
 
-![](.media\pbit02.png)
+![](.media/pbit02.png)
 
 適当なレポートを作成します。
 
-![](.media\pbit03.png)
+![](.media/pbit03.png)
 
 このままテンプレートを作成することも可能ですが、工夫をしてみます。Excelファイルパスをパラメータ化してみます。
 
 まずはPower Query エディターを開きます。
-![](.media\pbit03-1.png)
+![](.media/pbit03-1.png)
 
 
 現在のファイルパスをメモしておきます。
 
-![](.media\pbit03-1-1.png)
+![](.media/pbit03-1-1.png)
 
 パラメータを作成します。
 
-![](.media\pbit03-2.png)
+![](.media/pbit03-2.png)
 
 適当な名前を入力して、種類をテキストにしておきます。
 
-![](.media\pbit03-3.png)
+![](.media/pbit03-3.png)
 
 先ほどメモするために開いた、データソースのパスをパラメータの名称に変更します。完了したら閉じて適用を選択します。
 
-![](.media\pbit03-4.png)
+![](.media/pbit03-4.png)
 
 
 ではpbitファイルをエクスポートしてみましょう。
 
 ファイルタブを開きます。
 
-![](.media\pbit04.png)
+![](.media/pbit04.png)
 
 エクスポートします。
-![](.media\pbit05.png)
+![](.media/pbit05.png)
 
 
 #### 利用方法
@@ -116,7 +116,7 @@ Power BI を起動して、Excelデータを取得します。
 先ほど作成したFinancialSample.pbit（という名前で作成しました。）を開いてみると、パラメータの内容を求められます。
 Excelのデータをおいているパスを入力することで、指定されたファイルからレポートテンプレートにデータが読み込まれます。
 
-![](.media\pbit06.png)
+![](.media/pbit06.png)
 
 #### テンプレートファイルはこちら
 
@@ -139,7 +139,7 @@ Excelのデータをおいているパスを入力することで、指定され
 
 データソースの種類ごとにjsonで.pbidsファイルを作成するだけです。
 適当なエディタにはりつけて、<ファイル名>.pbidsで保存してください。
-フォルダの\はエスケープしてあげてください。
+フォルダの/はエスケープしてあげてください。
 
 ```json
 {
@@ -148,7 +148,7 @@ Excelのデータをおいているパスを入力することで、指定され
          "details":{
             "protocol":"file",
             "address":{
-               "path":"C:\\フォルダパス～"
+               "path":"C://フォルダパス～"
             }
          }
       }
@@ -158,7 +158,7 @@ Excelのデータをおいているパスを入力することで、指定され
 ```
 
 参考
-![](.media\pbids01.png)
+![](.media/pbids01.png)
 
 
 
@@ -171,4 +171,4 @@ pbidsファイルが作成され、アイコンも変わります。
 開くと、ファイルの内容が開かれます。
 
 
-![](.media\pbids02.png)
+![](.media/pbids02.png)
