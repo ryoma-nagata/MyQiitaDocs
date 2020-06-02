@@ -14,7 +14,9 @@
 
 ## はじめに
 
-Azure Synapse Analytics
+Azure Synapse AnalyticsはPower BI Serviceと統合されています。
+
+Power BI Serviceにコンテンツを発行する手順を試してみます。
 
 ## 手順
 
