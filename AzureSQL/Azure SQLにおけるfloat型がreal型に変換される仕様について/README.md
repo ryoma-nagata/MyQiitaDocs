@@ -1,0 +1,113 @@
+## 概要
+
+同僚に相談された、下記のMicrosoft SQL製品にて、float型がreal型に変換されてしまうという仕様を共有します。
+
+-   Microsoft SQL Server 
+-   Azure SQL Database
+-   Azure Synapse Analytics(SQL Pool)（旧名：SQL Data Warehouse）
+
+
+
+相談内容としては、float型がreal型に変換されてしまって困っているといものでした。ドキュメントにて下記の記載があり、実際にテーブルを作成して確認しました。
+
+>   **real** の ISO シノニムは、 **float (24)** です。
+
+引用元：[float 型と real 型](https://docs.microsoft.com/ja-jp/sql/t-sql/data-types/float-and-real-transact-sql?view=sql-server-ver15)
+
+
+
+実行結果としては、float型のnが1～24の場合はreal型に変換されていることが確認できました。
+
+
+
+## 確認手順
+
+Azure Synapse Analytics(SQL Pool)にて、確認した手順を共有します。
+
+1.  float型のCreate文を実行。
+
+```sql
+CREATE TABLE dbo.test_float_to_real
+(
+    float  float NULL
+   ,float_1  float(1) NULL
+   ,float_2  float(2) NULL
+   ,float_3  float(3) NULL
+   ,float_4  float(4) NULL
+   ,float_5  float(5) NULL
+   ,float_6  float(6) NULL
+   ,float_7  float(7) NULL
+   ,float_8  float(8) NULL
+   ,float_9  float(9) NULL
+   ,float_10 float(10) NULL
+   ,float_11 float(11) NULL
+   ,float_12 float(12) NULL
+   ,float_13 float(13) NULL
+   ,float_14 float(14) NULL
+   ,float_15 float(15) NULL
+   ,float_16 float(16) NULL
+   ,float_17 float(17) NULL
+   ,float_18 float(18) NULL
+   ,float_19 float(19) NULL
+   ,float_20 float(20) NULL
+   ,float_21 float(21) NULL
+   ,float_22 float(22) NULL
+   ,float_23 float(23) NULL
+   ,float_24 float(24) NULL
+   ,float_25 float(25) NULL
+   ,float_26 float(26) NULL
+   ,float_27 float(27) NULL
+);
+```
+
+
+
+2 .  作成したテーブルのDDLを確認。SSMSから、テーブルをスクリプト化しました。
+
+```sql
+/****** Object:  Table [dbo].[test_float_to_real]    Script Date: 2020/06/04 16:34:43 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[test_float_to_real]
+(
+	[float] [float] NULL,
+	[float_1] [real] NULL,
+	[float_2] [real] NULL,
+	[float_3] [real] NULL,
+	[float_4] [real] NULL,
+	[float_5] [real] NULL,
+	[float_6] [real] NULL,
+	[float_7] [real] NULL,
+	[float_8] [real] NULL,
+	[float_9] [real] NULL,
+	[float_10] [real] NULL,
+	[float_11] [real] NULL,
+	[float_12] [real] NULL,
+	[float_13] [real] NULL,
+	[float_14] [real] NULL,
+	[float_15] [real] NULL,
+	[float_16] [real] NULL,
+	[float_17] [real] NULL,
+	[float_18] [real] NULL,
+	[float_19] [real] NULL,
+	[float_20] [real] NULL,
+	[float_21] [real] NULL,
+	[float_22] [real] NULL,
+	[float_23] [real] NULL,
+	[float_24] [real] NULL,
+	[float_25] [float] NULL,
+	[float_26] [float] NULL,
+	[float_27] [float] NULL
+)
+WITH
+(
+	DISTRIBUTION = ROUND_ROBIN,
+	CLUSTERED COLUMNSTORE INDEX
+)
+GO
+```
+
