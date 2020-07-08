@@ -4,6 +4,7 @@
 
 以下の記事のGoogle Big Query (GBQ)での手順です。
 
+[GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめと環境設定](../GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめと環境設定/README.md)
 ## 構成
 
 ![](../GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめ/.media/GBQAML.drawio.svg)

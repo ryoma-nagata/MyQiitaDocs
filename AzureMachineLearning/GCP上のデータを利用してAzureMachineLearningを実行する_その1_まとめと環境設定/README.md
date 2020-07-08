@@ -1,4 +1,4 @@
-# GCP_BigQueryと接続してAzureMachineLearningを実行する
+# GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめと環境設定
 
 ## 概要
 

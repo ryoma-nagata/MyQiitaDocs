@@ -1,8 +1,10 @@
-# AzureMachineLearning\GCP上のデータを利用してAzureMachineLearningを実行する_その2_GCS
+# GCP上のデータを利用してAzureMachineLearningを実行する_その2_GCS
 
 ## 概要
 
-以下の記事のGCSでの手順です。
+以下の記事のGoogle Cloud Storage(GCS)での手順です。
+[GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめと環境設定](../GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめと環境設定/README.md)
+
 
 ## 構成
 
