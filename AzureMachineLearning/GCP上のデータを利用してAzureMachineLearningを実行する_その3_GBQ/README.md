@@ -32,7 +32,7 @@ jupyter notebookで[02_GBQ_ML_Local.ipynb](./source/**02_GBQ_ML_Local**.ipynb)�
 
 ## 3. AMLのリモート実験
 
-jupyter notebookで[03_GCS_Azure_ML_Remote.ipynb](./source/03_GBQ_Azure_ML_Remote.ipynb)を実行します。<br>
+jupyter notebookで[03_GBQ_Azure_ML_Remote.ipynb](./source/03_GBQ_Azure_ML_Remote.ipynb)を実行します。<br>
 
 利用ファイル：
 - 03_GCS_Azure_ML_Remote.ipynb
