@@ -28,8 +28,8 @@ Azure ML の実験で実行されるpythonスクリプト内で、GBQに対し�
 
  - 環境設定<br>
  本記事です。
- - Google Cloud Storage 上のデータを利用する
- - Google Big Query 上のデータを利用する
+ - GCS上のデータを利用する。・・・[GCP上のデータを利用してAzureMachineLearningを実行する_その2_GCS](../GCP上のデータを利用してAzureMachineLearningを実行する_その2_GCS/README.md)
+ - GBQ上のデータを利用する。・・・[GCP上のデータを利用してAzureMachineLearningを実行する_その3_GBQ](../GCP上のデータを利用してAzureMachineLearningを実行する_その3_GBQ/README.md)
 
 ## 環境設定手順
 
@@ -132,11 +132,24 @@ Google Cloud　console GUIで下記の手順を行います。
 
 ## 次のstep
 
- - GCS上のデータを利用する。・・・作成中
- - GBQ上のデータを利用する。・・・作成中
+ - GCS上のデータを利用する。・・・[GCP上のデータを利用してAzureMachineLearningを実行する_その2_GCS](../GCP上のデータを利用してAzureMachineLearningを実行する_その2_GCS/README.md)
+ - GBQ上のデータを利用する。・・・[GCP上のデータを利用してAzureMachineLearningを実行する_その3_GBQ](../GCP上のデータを利用してAzureMachineLearningを実行する_その3_GBQ/README.md)
 
 
 
 ## 参考
 
+CS（バケット）
+https://cloud.google.com/storage/docs/how-to?hl=ja
 
+BigQuery
+https://cloud.google.com/bigquery/docs/how-to?hl=ja
+
+Azure Machine Learning - scikit-learn
+https://docs.microsoft.com/en-us/azure/machine-learning/how-to-train-scikit-learn
+
+Setup Azure ML environment and workspace 
+https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-1st-experiment-sdk-setup
+
+azureml.train.sklearn.SKLearn
+https://docs.microsoft.com/en-us/python/api/azureml-train-core/azureml.train.sklearn.sklearn?view=azure-ml-py
