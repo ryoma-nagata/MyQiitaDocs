@@ -24,7 +24,7 @@ jupyter notebookで[01_GBQ_Create_Table.ipynb]を実行します。<br>
 - project_folder/サービスアカウントキー作成で出力したjsonファイル
 
 ## 2. ローカル実験によるテスト
-jupyter notebookで[02_GBQ_ML_Local.ipynb](./source/**02_GBQ_ML_Local**.ipynb)を実行します。<br>
+jupyter notebookで[02_GBQ_ML_Local.ipynb](./source/02_GBQ_ML_Local.ipynb)を実行します。<br>
 
 利用ファイル：
 - 02_GCS_ML_Local.ipynb
@@ -41,5 +41,5 @@ jupyter notebookで[03_GBQ_Azure_ML_Remote.ipynb](./source/03_GBQ_Azure_ML_Remot
 
 ## 4.GBQ準備
 
-課金が発生するので、不要な場合は、jupyter notebookで[04_GBQ_Delete_Data.ipynb](./source/02_GCS_ML_Local.ipynb)を実行して削除します。
+課金が発生するので、不要な場合は、jupyter notebookで[04_GBQ_Delete_Data.ipynb](./source/04_GBQ_Delete_Data.ipynb)を実行して削除します。
 

@@ -61,29 +61,29 @@ pip install google-cloud
 ``` 
 google-cloud-storage
 ```bash:anaconda prompt
-!pip install google-cloud-storage
+pip install google-cloud-storage
 ``` 
 
 google-cloud-bigquery
 ```bash:anaconda prompt
-!pip install google-cloud-bigquery
+pip install google-cloud-bigquery
 ``` 
 
 gcsfs
 ``` bash:anaconda prompt
-!pip install gcsfs
+pip install gcsfs
 ``` 
 
 azureml-sdk<br>
 
 ```bash:anaconda prompt
-!pip install azureml-sdk
+pip install azureml-sdk
 ```
 
 azureml-widgets<br>
 
 ```bash:anaconda prompt
-!pip install azureml-widgets
+pip install azureml-widgets
 ```
 
 ### 2. Azure ML 環境
