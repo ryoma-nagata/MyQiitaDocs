@@ -8,7 +8,7 @@
 
 ## 構成
 
-![](../GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめ/.media/GCSAML.drawio.svg)
+![](../GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめと環境設定/.media/GCSAML.drawio.svg)
 
 ## 手順概要
 

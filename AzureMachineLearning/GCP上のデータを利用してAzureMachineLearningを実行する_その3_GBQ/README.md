@@ -7,7 +7,7 @@
 [GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめと環境設定](../GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめと環境設定/README.md)
 ## 構成
 
-![](../GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめ/.media/GBQAML.drawio.svg)
+![](../GCP上のデータを利用してAzureMachineLearningを実行する_その1_まとめと環境設定/.media/GBQAML.drawio.svg)
 
 ## 手順概要
 
