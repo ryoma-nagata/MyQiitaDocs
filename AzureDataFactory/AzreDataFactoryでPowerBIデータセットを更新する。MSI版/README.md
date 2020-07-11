@@ -1,3 +1,15 @@
+- [概要](#概要)
+  - [MSI 認証](#msi-認証)
+    - [参考リンク](#参考リンク)
+- [手順](#手順)
+  - [前提注意事項](#前提注意事項)
+  - [1. AAD セキュリティグループを作成して、ADFを追加する](#1-aad-セキュリティグループを作成してadfを追加する)
+  - [2. Power BI テナントでAPI利用を許可して、AADセキュリティグループを追加する](#2-power-bi-テナントでapi利用を許可してaadセキュリティグループを追加する)
+  - [3. Power BI Workspace内で、ADFを追加する](#3-power-bi-workspace内でadfを追加する)
+  - [4. Data Factory Pipelineを作成する](#4-data-factory-pipelineを作成する)
+  - [5. 動作確認](#5-動作確認)
+- [補足事項](#補足事項)
+
 ## 概要
 
 下記の記事の改良版です。
@@ -290,3 +302,12 @@ Power BI　WorkspaceにADFを追加します。
 
 
 テナントIDはAzure Portalから確認してください。
+
+## 補足事項
+
+2020年7月時点では、Power BI データセットの更新回数はFree,Proライセンスで利用可能な非占有型のワークスペースでは **8会**。
+Premium ライセンスで利用可能な占有型のワークスペースでは48回の更新が可能です。
+
+ただし、本記事のようなAPIによる更新の場合、Premium環境のみ無制限の更新が可能となります。
+
+[データ更新](https://docs.microsoft.com/ja-jp/power-bi/connect-data/refresh-data#data-refresh)
