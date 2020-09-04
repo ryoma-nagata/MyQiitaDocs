@@ -1,0 +1,130 @@
+## はじめに
+
+**2020/9 時点の情報です。**
+
+[Power BI Premiumシリーズ](../README.md) 1つめ
+
+まずはPower BI Premiumについて理解します。<br>私自身が案内する際も、共有したいユーザが500人以上の場合はPremiumがオススメ(Proライセンスが1000円ちょっとのため)というような案内をしていますが、共有の規模以外にも色々と機能面でのメリットがあります。
+
+価格参考
+- [Power BI 価格](https://powerbi.microsoft.com/ja-jp/pricing/)
+- [Power BI Premium 価格計算ツール](https://powerbi.microsoft.com/ja-jp/calculator/)
+
+
+
+### Power BI Premiumの契約形態
+
+Power BI Premiumと呼ばれるライセンスにはいくつかのSKUがあります。<br>
+契約期間についても、Pシリーズは月単位、EMシリーズは年間単位などの差異があるようです。
+[サブスクリプションとライセンス](https://docs.microsoft.com/ja-jp/power-bi/admin/service-premium-what-is#subscriptions-and-licensing)
+
+>- P SKU (P1 から P5) - 埋め込みおよびエンタープライズ機能、月間契約または年間契約が必要、1 か月単位での課金。オンプレミスの Power BI Report Server をインストールするライセンスも含まれている。
+>- EM SKU (EM1 から EM3) - "組織的な" 埋め込み、年間契約が必要、1 か月単位での課金。 EM1 および EM2 SKU は、ボリューム ライセンス プランを通してのみ利用できます。 直接購入することはできません。
+
+また、従量課金となる**Power BI Embedded** による購入はA SKUとなります。
+
+それぞれのライセンスで利用できる性能は以下の通り
+
+[容量ノード](https://docs.microsoft.com/ja-jp/power-bi/admin/service-premium-what-is#capacity-nodes)
+
+| 容量ノード | 合計 v コア数 | バックエンド v コア数 | RAM (GB) | フロントエンド v コア数 | DirectQuery/ライブ接続 (秒あたり) | モデル更新並列処理 |
+| --- | --- | --- | --- | --- | --- | --- |
+| EM1/A1 | 1 | 0.5 | 3 | 0.5 | 3.75 | 1 |
+| EM2/A2 | 2 | 1 | 5 | 1 | 7.5 | 2 |
+| EM3/A3 | 4 | 2 | 10 | 2 | 15 | 3 |
+| P1/A4 | 8 | 4 | 25 | 4 | 30 | 6 |
+| P2/A5 | 16 | 8 | 50 | 8 | 60 | 12 |
+| P3/A6 | 32 | 16 | 100 | 16 | 120 | 24 |
+| P4/A7 <sup>[1](#limit)</sup>| 64 | 32 | 200 | 32 | 240 | 48 |
+| P5/A8 <sup>[1](#limit)</sup>| 128 | 64 | 400 | 64 | 480 | 96 |
+| | | | | | | |
+
+これらのうちA2より上位のSKUは占有のインフラでPower BIのワークロードを実行することができ、一部の機能は占有のインフラでのみ提供されています。
+
+[サブスクリプションとライセンス](https://docs.microsoft.com/ja-jp/power-bi/admin/service-premium-what-is#capacity-nodes)
+> 仮想コアが 4 個未満の EM1、EM2、A1、および A2 の SKU は、専用インフラストラクチャ上では実行されません。
+
+### Premium機能差
+
+Power BI Premiumの機能の概要は以下の通りです。
+
+[Power BI Premium とは](https://docs.microsoft.com/ja-jp/power-bi/admin/service-premium-what-is#dedicated-capacities)
+[Premium 容量でワークロードを構成する](https://docs.microsoft.com/ja-jp/power-bi/admin/service-admin-premium-workloads)
+
+|分類  |概要  |備考  |
+|---------|---------|---------|
+|専用の容量     |         |         |
+|大規模なデータセット     | 10GBのモデルをアップロード可能        | https://docs.microsoft.com/ja-jp/power-bi/connect-data/refresh-data#datasets-in-import-mode        |
+|データセットのスケジュール更新回数     | 1 日に最大 48 回までスケジュール更新可能（通常は8回/日）        | https://docs.microsoft.com/ja-jp/power-bi/connect-data/refresh-data#data-refresh        |
+|ページ分割されたレポート     | 旧SSRS形式のレポートを発行可能        |         |
+|Power BI Report Server     | Power BI Report Serverのライセンス        |         |
+|無制限のコンテンツの共有     | Proライセンスを持たないユーザへの共有<br>※Power BI EmbeddedのAシリーズでは不可       |         |
+|Power BI Premium での Analysis Services     | Analysis Service同等のXMLAエンドポイントを利用可能。<br>Visual Studio、SSMSによる開発など        | https://docs.microsoft.com/ja-jp/power-bi/admin/service-premium-connect-tools         |
+|データフローの一部の機能     | 後述        |         |
+|AI機能     | 後述        |         |
+
+
+### データフローの一部の機能について
+
+特にデータフローの機能に関しては、以下のような差異があります。
+
+[Power BI Premium でデータフロー機能](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-dataflows-overview#dataflow-capabilities-on-power-bi-premium)
+
+|データフローの機能 | Power BI Pro |   Power BI Premium |
+|---------|---------|---------|
+|スケジュールされた更新| 8 回/日|  48|
+|合計ストレージ| 10 GB/ユーザー  |100 TB/ノード|
+|Power Query Online でのデータフローの作成|    +   |+|
+|Power BI 内でのデータフローの管理|   +|  +|
+|Power BI Desktop でのデータフロー データ コネクタ|  +|  +|
+|Azure との統合|    +|  +|
+|計算されたエンティティ (M によるストレージ内変換) | |   +|
+|新しいコネクタ|    +|  +|
+|データフローの増分更新|  |   +|
+|Power BI Premium 容量での実行/変換の並列実行|   |   +|
+|データフローでリンクされたエンティティ| |        +|
+|Common Data Model の標準化されたスキーマ/組み込みのサポート|  +|  +|
+
+#### 計算されたエンティティ (M によるストレージ内変換) 
+
+[Power BI Premium での計算されたエンティティの使用](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-dataflows-computed-entities-premium)
+データフロー内での結合はこの機能を利用する必要があります。
+
+#### データフローの増分更新
+
+[Power BI データフローでの増分更新の使用](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-dataflows-incremental-refresh)
+
+データセットでは最近Premiumライセンス不要で増分更新がサポートされていますが、データフローではPremium限定機能となっています。
+
+#### Power BI Premium 容量での実行/変換の並列実行
+
+以下を含むような性能面での機能と理解
+
+[拡張コンピューティング エンジン](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-dataflows-enhanced-compute-engine)
+
+#### データフローでリンクされたエンティティ
+
+[Power BI のデータフロー間でエンティティをリンクする](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-dataflows-linked-entities)
+
+
+#### Power BI で DirectQuery とデータフローを使用する
+
+上記の表には載っていませんでしたが、こちらも。
+
+[Power BI で DirectQuery とデータフローを使用する](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-dataflows-directquery)
+
+### AI機能について
+
+また、Premiumライセンスでは以下のようなAI機能が利用できます。
+
+※自動機械学習以外はPower BI DesktopであればPremium無しでの実行が可能です。
+
+- [Power BI での自動化 された機械学習](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-machine-learning-automated)
+- [Power BI の Cognitive Services](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-cognitive-services)
+- [Azure Machine Learning の Power BI への統合](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-machine-learning-integration)
+
+## 次の記事
+
+以上がPremiumの機能差異とその機能についての整理となります。
+
+次はこれらの機能をライセンス契約などをせず、従量課金でテストする方法を紹介します。
