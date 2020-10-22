@@ -17,7 +17,7 @@ Power BI Premiumについて色々まとめてみようと思います。
 
 [Power BI Premium専用機能を従量課金でテストする方法](Power%20BI%20Premium専用機能を従量課金でテストする方法/README.md)
 
-### Power BI データフローにPremiumu容量を割り当てて、性能向上するか試してみる
+### Power BI データフローにPremium容量を割り当てて、性能向上するか試してみる
 
 Premium専用機能である、[拡張コンピューティング エンジン](https://docs.microsoft.com/ja-jp/power-bi/transform-model/service-dataflows-enhanced-compute-engine)について、どれくらいパフォーマンスが変わるか**超**簡単にテストします。
 
