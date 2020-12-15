@@ -1,12 +1,14 @@
-# AzureSynapseAnalyticsのAzureML連携を試してみる（試行錯誤記）
+# AzureSynapseAnalyticsで機械学習を利用しよう①モデル学習からスコアリングの流れ
 
 ## はじめに
 
-Azure Synapse Analytics(以下、ASA)上でのMLの利用について[Azure Synapse Analytics の Machine Learning 機能 (ワークスペース プレビュー)](https://docs.microsoft.com/ja-jp/azure/synapse-analytics/machine-learning/what-is-machine-learning)に記載されているような概要で機能が形になってきました。
+Azure Synapse Analytics(以下、Synapse)上での機械学習の利用について[Azure Synapse Analytics の Machine Learning 機能 (ワークスペース プレビュー)](https://docs.microsoft.com/ja-jp/azure/synapse-analytics/machine-learning/what-is-machine-learning)に記載されているような概要で機能が形になってきました。
 
-今回はMLワークロードの中でもDWHデータに対するスコアリングができる[チュートリアル:Synapse SQL プール向けの機械学習モデル スコアリング ウィザード](https://docs.microsoft.com/ja-jp/azure/synapse-analytics/machine-learning/tutorial-sql-pool-model-scoring-wizard)で案内されているウィザードを使った結果を記載したいと思います。
+分析に関わるワークロードを集約する環境として開発が進みついにGAが発表されたSynapseですが、今回はMLワークロードの中でもDWHデータに対するスコアリングができる[チュートリアル:Synapse SQL プール向けの機械学習モデル スコアリング ウィザード](https://docs.microsoft.com/ja-jp/azure/synapse-analytics/machine-learning/tutorial-sql-pool-model-scoring-wizard)で案内されているウィザードを使った結果を記載したいと思います。  
+※すんなりいかなかった箇所も含めて紹介します。 
 
-この記事では上記のチュートリアルで紹介されているトレーニングのノートブック以外に、AutoMLのモデルを作った結果についても記します。
+(2020/12時点の情報）
+
 
 ### スコアリング ウィザードについて
 
@@ -49,8 +51,8 @@ GUIでT-SQLのスコアリングスクリプトが生成されます。
 
 それぞれ環境を準備して、linked Serviceを作成しておきます。
 
-[クイック スタート:Synapse ワークスペースを作成する](https://docs.microsoft.com/ja-jp/azure/synapse-analytics/quickstart-create-workspace)
-[クイック スタート:Azure portal を使用して新しい Apache Spark プールを作成する](https://docs.microsoft.com/ja-jp/azure/synapse-analytics/quickstart-create-apache-spark-pool-portal)
+[クイック スタート:Synapse ワークスペースを作成する](https://docs.microsoft.com/ja-jp/azure/synapse-analytics/quickstart-create-workspace)  
+[クイック スタート:Azure portal を使用して新しい Apache Spark プールを作成する](https://docs.microsoft.com/ja-jp/azure/synapse-analytics/quickstart-create-apache-spark-pool-portal)  
 [クイック スタート:Azure portal を使用して Synapse SQL プール (プレビュー) を作成する](https://docs.microsoft.com/ja-jp/azure/synapse-analytics/quickstart-create-sql-pool-portal)
 [チュートリアル:Jupyter Notebook で Azure Machine Learning の作業を開始する](https://docs.microsoft.com/ja-jp/azure/machine-learning/tutorial-1st-experiment-sdk-setup)
 
@@ -60,13 +62,10 @@ GUIでT-SQLのスコアリングスクリプトが生成されます。
 
 ### 1st try Azure ML Compute Instance上でモデル学習～登録(チュートリアル通り)
 
+
 pip list 上のscikit-learnのversionが指定と違ったので、importしなおして実行したところ、エラー・・・
 
-> from sklearn.model_selection import train_test_split
-
-がこけるという・・・
-
-![](.media/sklearn_importError.png)
+![](.media/sklearn_importError2.png)
 
 ### 2st try Azure ML Compute Instance上でモデル学習～登録(チュートリアル通り)
 
@@ -83,7 +82,9 @@ pip list 上のscikit-learnのversionが指定と違ったので、importしな�
 ### 3rd try Spark Notebook上でモデル学習～登録
 
 トラシューするときりがないので、Synapse上でやってみます.  
-ライブラリのバージョンは一旦無視します。
+もしかしたらSynapse studioでやることが推奨なのかも？
+
+ライブラリのバージョンは一旦無視します。    
 
 ただし、mlflowはSynapse Sparkにはビルトインされていないようなので、以下の内容のrequirements.txtを用意してSynapse Sparkのパッケージ追加を行い、トライします
 
@@ -106,9 +107,37 @@ Azure ML にonnxモデルが登録されました。AzureMLのエラーはなん
 このinput_exampleや、signatureが用意されていることが非常に重要でした。  
 これがないと上述の**マッピング機能が利用できません**。MLFlowでの登録はこの作成をしてくれるようです。
 
-さて、Synapse の確認ですが、この状態であれば、SQL Poolからも利用ができ、マッピングも用意されています。
 
 
+### スコアリングウィザード
 
-### 4rd try Spark Notebook上でモデル学習～登録
+さて、スコアリングウィザード の確認ですが、この状態であれば、SQL Poolからも利用ができ、マッピングも用意されています。
 
+手順通りテーブルを作成して、右クリックでウィザードを起動します。
+
+![](.media/wizard1.png)
+
+モデルを選択します。バージョン情報が出ていて親切です。
+
+![](.media/wizard2.png)
+
+スコアリング用のスクリプトはストアドプロシージャとして作成されます。
+
+![](.media/wizard3.png)
+
+内容はこんな感じ.  
+PREDICT関数が利用されています。
+
+[PREDICT (Transact-SQL)](https://docs.microsoft.com/ja-jp/sql/t-sql/queries/predict-transact-sql?view=sql-server-ver15)
+
+![](.media/wizard4.png)
+
+実行すると、output labelとして、スコアリング結果が表示されます。
+
+![](.media/wizard5.png)
+
+## おわり
+
+Synapse Studio上で実行すれば非常に簡単になっていました。
+
+次回は、AutoMLの利用の紹介とともに、Synapseを中心としたモデル学習について紹介してみようと思います。
