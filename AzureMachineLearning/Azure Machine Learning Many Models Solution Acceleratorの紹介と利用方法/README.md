@@ -161,14 +161,13 @@ parallelrun_step = ParallelRunStep(
 https://docs.microsoft.com/en-us/python/api/azureml-contrib-pipeline-steps/azureml.contrib.pipeline.steps.parallelrunstep?view=azure-ml-py#:~:text=The%20ParallelRunStep%20class%20can%20be%20used%20for%20any,job%20into%20batches%20that%20are%20processed%20in%20parallel.)
 
 
-### modelの指定ができない
+### 時系列タスクになっていない
 
-現時点ではこのような措置が必要なようです。
+現時点ではこのような措置が必要なようです。※次のSDKリリースで改修予定だとか
 automl_settingsのリストに以下を追加しましょう。
 
 ```
 
-    "allowed_models" : ['AutoArima','Average','Naive','Prophet','SeasonalAverage','SeasonalNaive'],
     "is_timeseries":True
 
 ```
