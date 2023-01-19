@@ -34,7 +34,7 @@ Delta Live Tableなど、API経由でしかジョブ実行できないものが�
 
 ## パイプラインテンプレートのインポート
 
-1.[]()からダウンロードします。
+1.[https://github.com/ryoma-nagata/MyQiitaDocs/blob/master/AzureDatabricks/Azure%20Data%20Factory%E3%81%8B%E3%82%89Azure%20Databricks%E3%81%AEJobAPI%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B/templates/run_databricks_job.zip](https://github.com/ryoma-nagata/MyQiitaDocs/blob/master/AzureDatabricks/Azure%20Data%20Factory%E3%81%8B%E3%82%89Azure%20Databricks%E3%81%AEJobAPI%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B/templates/run_databricks_job.zip)からダウンロードします。
 
 2.ADF Portal上でインポートします。
 
@@ -102,6 +102,47 @@ Message: @{activity('get_run_status').output.state.state_message}
 Run page URL: @{activity('get_run_status').output.run_page_url}
 
 ```
+
+## 実行テスト
+
+実行してみます。
+
+![](.image/2022-09-22-17-20-38.png)
+
+### 正常終了
+
+![](.image/2022-09-22-17-30-21.png)
+
+
+各主要なアクティビティの出力を確認します
+
+ジョブ実行API結果
+
+![](.image/2022-09-22-17-30-48.png)
+
+ジョブステータス確認結果（最後）
+
+
+![](.image/2022-09-22-17-43-58.png)
+
+### 異常終了
+
+![](.image/2022-09-22-17-42-39.png)
+
+各主要なアクティビティの出力を確認します
+
+ジョブ実行API結果
+
+![](.image/2022-09-22-17-32-48.png)
+
+ジョブステータス確認結果（最後）
+
+![](.image/2022-09-22-17-43-25.png)
+
+エラー結果
+
+![](.image/2022-09-22-17-44-19.png)
+
 
 ## 参考
 
